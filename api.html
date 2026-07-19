@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>APIs Catalog | Active Pharmaceutical Ingredients | Viva Quest</title>
+    <meta name="description"
+        content="Browse our directory of high-purity Active Pharmaceutical Ingredients (APIs). Search by CAS number, product name or molecular formula.">
+    <meta name="keywords"
+        content="APIs, Active Pharmaceutical Ingredients, API catalog, pharmaceutical ingredients, CAS number search, Viva Quest">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://vivaquest.co.in/api.html">
+    <meta property="og:title" content="APIs Catalog | Viva Quest">
+    <meta property="og:description" content="Search our Active Pharmaceutical Ingredients directory.">
+    <meta property="og:image" content="assets/Logo.png">
+    <link rel="icon" type="image/png" href="assets/Logo.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@400;600&family=JetBrains+Mono:wght@500&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0a1628',
+                        secondary: '#006971',
+                        'scientific-orange': '#F79C2C',
+                        'light-bg': '#f7f9fb',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .dropdown::before {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+
+        .select-all {
+            user-select: all;
+        }
+    </style>
+</head>
+
+<body class="font-sans text-gray-800 antialiased">
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-[#0a1628] shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center justify-between h-20">
+                <a href="index.html" class="flex items-center gap-3">
+                    <img alt="Viva Quest Logo" class="h-12 w-12 object-contain" src="assets/Logo.png">
+                    <div class="hidden sm:block">
+                        <span class="text-lg font-bold text-white block leading-tight">Viva Quest</span>
+                        <span class="text-[10px] tracking-widest uppercase text-gray-300 block -mt-1">Private
+                            Limited</span>
+                    </div>
+                </a>
+                <nav class="hidden lg:flex items-center gap-1">
+                    <a href="index.html"
+                        class="text-white/80 font-medium px-4 py-2 rounded text-sm hover:bg-white/10 hover:text-white transition">Home</a>
+                    <div class="relative dropdown">
+                        <a href="about.html"
+                            class="text-white/80 font-medium px-4 py-2 rounded text-sm hover:bg-white/10 hover:text-white transition flex items-center gap-1">About
+                            Us <span class="material-symbols-outlined text-base">expand_more</span></a>
+                        <div
+                            class="dropdown-menu hidden absolute top-full left-0 bg-white shadow-xl rounded-lg min-w-[220px] py-2 mt-1 border border-gray-100 z-50">
+                            <a href="about.html"
+                                class="block px-5 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#006971] transition">Business
+                                Overview</a>
+                            <a href="management_team.html"
+                                class="block px-5 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#006971] transition">Management
+                                Team</a>
+                        </div>
+                    </div>
+                    <div class="relative dropdown">
+                        <a href="#"
+                            class="text-white font-medium px-4 py-2 rounded text-sm hover:bg-white/10 transition flex items-center gap-1 border-b-2 border-secondary">Products
+                            <span class="material-symbols-outlined text-base">expand_more</span></a>
+                        <div
+                            class="dropdown-menu hidden absolute top-full left-0 bg-white shadow-xl rounded-lg min-w-[220px] py-2 mt-1 border border-gray-100 z-50">
+                            <a href="impurities.html"
+                                class="block px-5 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#006971] transition">Impurities</a>
+                            <a href="api.html"
+                                class="block px-5 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#006971] transition">APIs</a>
+                            <a href="intermediates.html"
+                                class="block px-5 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#006971] transition">KSMs
+                                & Intermediates</a>
+                            <a href="cro.html"
+                                class="block px-5 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#006971] transition">CRO
+                                Services</a>
+                            <a href="cdmo.html"
+                                class="block px-5 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#006971] transition">CDMO</a>
+                            <a href="crams.html"
+                                class="block px-5 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#006971] transition">CRAMS</a>
+                        </div>
+                    </div>
+                    <div class="relative dropdown">
+                        <a href="#"
+                            class="text-white/80 font-medium px-4 py-2 rounded text-sm hover:bg-white/10 hover:text-white transition flex items-center gap-1">Infrastructure
+                            <span class="material-symbols-outlined text-base">expand_more</span></a>
+                        <div
+                            class="dropdown-menu hidden absolute top-full left-0 bg-white shadow-xl rounded-lg min-w-[220px] py-2 mt-1 border border-gray-100 z-50">
+                            <a href="rd.html"
+                                class="block px-5 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#006971] transition">R&D</a>
+                            <a href="manufacturing_facility.html"
+                                class="block px-5 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#006971] transition">Manufacturing
+                                Facility</a>
+                            <a href="quality.html"
+                                class="block px-5 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#006971] transition">Quality</a>
+                            <a href="gallery.html"
+                                class="block px-5 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#006971] transition">Gallery</a>
+                            <a href="certifications.html"
+                                class="block px-5 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#006971] transition">Certifications</a>
+                        </div>
+                    </div>
+                    <a href="safety.html"
+                        class="text-white/80 font-medium px-4 py-2 rounded text-sm hover:bg-white/10 hover:text-white transition">Safety</a>
+                    <a href="careers.html"
+                        class="text-white/80 font-medium px-4 py-2 rounded text-sm hover:bg-white/10 hover:text-white transition">Careers</a>
+                    <a href="contact.html"
+                        class="bg-[#006971] hover:bg-teal-700 text-white font-semibold px-5 py-2.5 rounded text-sm transition ml-2">Contact
+                        Us</a>
+                </nav>
+                <button id="menu-btn" class="lg:hidden text-white p-2" aria-label="Menu">
+                    <span class="material-symbols-outlined text-2xl">menu</span>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden bg-[#0a1628] border-t border-white/10 px-4 py-4">
+            <div class="flex flex-col gap-2">
+                <a href="index.html" class="text-white font-medium py-2 text-sm">Home</a>
+                <a href="about.html" class="text-white/70 py-2 text-sm">About Us</a>
+                <a href="impurities.html" class="text-white/70 py-2 text-sm">Impurities</a>
+                <a href="api.html" class="text-white font-medium py-2 text-sm">APIs</a>
+                <a href="intermediates.html" class="text-white/70 py-2 text-sm">KSMs & Intermediates</a>
+                <a href="cro.html" class="text-white/70 py-2 text-sm">CRO Services</a>
+                <a href="cdmo.html" class="text-white/70 py-2 text-sm">CDMO</a>
+                <a href="crams.html" class="text-white/70 py-2 text-sm">CRAMS</a>
+                <a href="rd.html" class="text-white/70 py-2 text-sm">R&D</a>
+                <a href="manufacturing_facility.html" class="text-white/70 py-2 text-sm">Manufacturing Facility</a>
+                <a href="gallery.html" class="text-white/70 py-2 text-sm">Gallery</a>
+                <a href="quality.html" class="text-white/70 py-2 text-sm">Quality</a>
+                <a href="certifications.html" class="text-white/70 py-2 text-sm">Certifications</a>
+                <a href="safety.html" class="text-white/70 py-2 text-sm">Safety</a>
+                <a href="careers.html" class="text-white/70 py-2 text-sm">Careers</a>
+                <a href="contact.html"
+                    class="bg-[#006971] text-white font-semibold px-4 py-2.5 rounded text-sm text-center mt-2">Contact
+                    Us</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="relative pt-20 overflow-hidden"
+        style="background: linear-gradient(135deg, #0a1628 0%, #1a2a4a 100%);">
+        <div class="relative z-10 max-w-7xl mx-auto px-4 py-20">
+            <span class="text-sm font-semibold text-secondary uppercase tracking-widest">Product Catalog</span>
+            <h1 class="text-3xl md:text-5xl font-bold text-white mt-3 leading-tight">Active Ingredients (APIs) Directory
+            </h1>
+            <p class="text-gray-300 mt-4 max-w-2xl text-lg">Browse our catalog of Active Pharmaceutical Ingredients.
+                Filter by CAS number, product name, or molecular formula.</p>
+        </div>
+    </section>
+
+    <!-- Search and Table -->
+    <main class="max-w-7xl mx-auto px-4 py-12">
+        <div class="flex flex-col md:flex-row gap-4 justify-between items-center mb-8">
+            <div class="relative w-full md:max-w-lg">
+                <span
+                    class="material-symbols-outlined text-gray-400 absolute left-4 top-1/2 -translate-y-1/2">search</span>
+                <input id="catalog-search-input" type="text" oninput="filterAndDisplay(this.value, 'api')"
+                    placeholder="Search by CAS No, Name, or Formula..."
+                    class="w-full pl-12 pr-4 py-3.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-secondary focus:border-secondary outline-none bg-white shadow-sm">
+            </div>
+            <span id="records-count" class="text-xs font-semibold text-gray-500 font-mono">0 products found</span>
+        </div>
+
+        <div id="catalog-loader" class="flex flex-col items-center justify-center py-20 text-gray-400">
+            <span class="material-symbols-outlined text-4xl animate-spin mb-3 text-secondary">cached</span>
+            <p class="text-sm font-semibold">Loading catalog records...</p>
+        </div>
+
+        <div class="overflow-x-auto bg-white border border-gray-200 rounded-xl shadow-sm">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr
+                        class="bg-gray-50 text-gray-500 font-bold border-b border-gray-200 text-xs uppercase tracking-wider">
+                        <th class="px-6 py-4">Product ID</th>
+                        <th class="px-6 py-4">Compound Name</th>
+                        <th class="px-6 py-4">CAS Number</th>
+                        <th class="px-6 py-4">Formula</th>
+                        <th class="px-6 py-4">Mol. Weight</th>
+                        <th class="px-6 py-4 text-center">Purity</th>
+                        <th class="px-6 py-4 text-center">Availability</th>
+                        <th class="px-6 py-4 text-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="catalog-table-body" class="divide-y divide-gray-100">
+                </tbody>
+            </table>
+        </div>
+        <div id="pagination-controls"></div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#0a1628] text-gray-400 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <img alt="Viva Quest Logo" class="h-10 w-10 object-contain" src="assets/Logo_footer.png">
+                        <div><span class="text-lg font-bold text-white block">Viva Quest</span><span
+                                class="text-[10px] tracking-widest uppercase text-gray-300 block -mt-1">Private
+                                Limited</span></div>
+                    </div>
+                    <p class="text-sm leading-relaxed">Trusted supplier of pharmaceutical chemicals, APIs, impurities
+                        and intermediates. Serving research, manufacturing and analytics globally.</p>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold text-sm uppercase tracking-wider mb-5">Products</h3>
+                    <ul class="flex flex-col gap-3 text-sm">
+                        <li><a href="impurities.html" class="hover:text-[#006971] transition">Impurities Database</a>
+                        </li>
+                        <li><a href="api.html" class="hover:text-[#006971] transition">APIs</a></li>
+                        <li><a href="intermediates.html" class="hover:text-[#006971] transition">KSMs &
+                                Intermediates</a></li>
+                        <li><a href="cro.html" class="hover:text-[#006971] transition">CRO Services</a></li>
+                        <li><a href="cdmo.html" class="hover:text-[#006971] transition">CDMO</a></li>
+                        <li><a href="crams.html" class="hover:text-[#006971] transition">CRAMS</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold text-sm uppercase tracking-wider mb-5">Quick Links</h3>
+                    <ul class="flex flex-col gap-3 text-sm">
+                        <li><a href="about.html" class="hover:text-[#006971] transition">About Us</a></li>
+                        <li><a href="management_team.html" class="hover:text-[#006971] transition">Management Team</a>
+                        </li>
+                        <li><a href="rd.html" class="hover:text-[#006971] transition">R&D</a></li>
+                        <li><a href="manufacturing_facility.html" class="hover:text-[#006971] transition">Manufacturing
+                                Facility</a></li>
+                        <li><a href="quality.html" class="hover:text-[#006971] transition">Quality</a></li>
+                        <li><a href="gallery.html" class="hover:text-[#006971] transition">Gallery</a></li>
+                        <li><a href="certifications.html" class="hover:text-[#006971] transition">Certifications</a>
+                        </li>
+                        <li><a href="safety.html" class="hover:text-[#006971] transition">Safety</a></li>
+                        <li><a href="careers.html" class="hover:text-[#006971] transition">Careers</a></li>
+                        <li><a href="contact.html" class="hover:text-[#006971] transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold text-sm uppercase tracking-wider mb-5">Get in Touch</h3>
+                    <div class="flex flex-col gap-4 text-sm">
+                        <div class="flex gap-3"><span
+                                class="material-symbols-outlined text-[#006971] text-lg mt-0.5">location_on</span>
+                            <div><span class="text-white font-semibold">Registered Office</span>
+                                <p class="text-gray-400 text-xs mt-1">Plot No.-19, IDA, Balanagar,<br>Hyderabad,
+                                    Telangana-500037</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3 items-center"><span
+                                class="material-symbols-outlined text-[#006971] text-lg">mail</span><a
+                                href="mailto:info@vivaquest.co.in"
+                                class="hover:text-[#006971] transition">info@vivaquest.co.in</a></div>
+                        <div class="flex gap-3 items-center"><span
+                                class="material-symbols-outlined text-[#006971] text-lg">call</span><span>+91 12 3456
+                                7890</span></div>
+                        <div class="flex gap-3 items-center text-xs"><span
+                                class="material-symbols-outlined text-[#006971] text-lg">receipt</span><span
+                                class="font-mono">GSTIN: 36AAMCV0403B1ZT</span></div>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="border-t border-white/10 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center text-sm text-gray-500">
+                <span>&copy; 2026 Viva Quest Private Limited. All rights reserved.</span>
+                <span class="mt-2 sm:mt-0">GMP Compliant | ISO 9001:2015</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    </script>
+    <script src="assets/js/catalog.js"></script>
+    <script>initializeCatalogSearch('api');</script>
+</body>
+
+</html>

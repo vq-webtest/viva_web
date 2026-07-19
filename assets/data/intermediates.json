@@ -1,0 +1,182 @@
+[
+    {
+        "Product ID": "VQ-KSM-001",
+        "Product Name": "4-Methyl-3-nitrobenzoic acid",
+        "CAS Number": "96-98-0",
+        "Molecular Formula": "C8H7NO4",
+        "Molecular Weight": "181.15",
+        "Purity": "98%",
+        "Availability": "In Stock"
+    },
+    {
+        "Product ID": "VQ-KSM-002",
+        "Product Name": "4-Methyl-3-Amino benzoic acid",
+        "CAS Number": "2458-12-0",
+        "Molecular Formula": "C8H9NO2",
+        "Molecular Weight": "151.16",
+        "Purity": "97%",
+        "Availability": "In Stock"
+    },
+    {
+        "Product ID": "VQ-KSM-003",
+        "Product Name": "Methyl 4-amino-3-methylbenzoate",
+        "CAS Number": "18595-14-7",
+        "Molecular Formula": "C9H11NO2",
+        "Molecular Weight": "165.19",
+        "Purity": "98%",
+        "Availability": "In Stock"
+    },
+    {
+        "Product ID": "VQ-KSM-004",
+        "Product Name": "3-Methyl-4-nitrobenzoic acid",
+        "CAS Number": "3113-71-1",
+        "Molecular Formula": "C8H7NO4",
+        "Molecular Weight": "181.15",
+        "Purity": "98%",
+        "Availability": "In Stock"
+    },
+    {
+        "Product ID": "VQ-KSM-005",
+        "Product Name": "Bromo acetaldehyde Dimethyl Acetal (BADMA)",
+        "CAS Number": "7252-83-7",
+        "Molecular Formula": "C4H9BrO2",
+        "Molecular Weight": "169.02",
+        "Purity": "99%",
+        "Availability": "In Stock"
+    },
+    {
+        "Product ID": "VQ-KSM-006",
+        "Product Name": "Bromo acetaldehyde Diethyl Acetal (BADEA)",
+        "CAS Number": "2032-35-1",
+        "Molecular Formula": "C6H13BrO2",
+        "Molecular Weight": "197.07",
+        "Purity": "98%",
+        "Availability": "In Stock"
+    },
+    {
+        "Product ID": "VQ-KSM-007",
+        "Product Name": "2-Methyl-3-nitrobenzoic Acid",
+        "CAS Number": "1975-50-4",
+        "Molecular Formula": "C8H7NO4",
+        "Molecular Weight": "181.15",
+        "Purity": "97%",
+        "Availability": "In Stock"
+    },
+    {
+        "Product ID": "VQ-KSM-008",
+        "Product Name": "Methoxy Acetic acid",
+        "CAS Number": "625-45-6",
+        "Molecular Formula": "C3H6O3",
+        "Molecular Weight": "90.08",
+        "Purity": "99%",
+        "Availability": "In Stock"
+    },
+    {
+        "Product ID": "VQ-KSM-009",
+        "Product Name": "Ethoxy Acetic acid",
+        "CAS Number": "627-03-2",
+        "Molecular Formula": "C4H8O3",
+        "Molecular Weight": "104.10",
+        "Purity": "98%",
+        "Availability": "In Stock"
+    },
+    {
+        "Product ID": "VQ-KSM-010",
+        "Product Name": "1-Boc-piperazine",
+        "CAS Number": "57260-71-6",
+        "Molecular Formula": "C9H18N2O2",
+        "Molecular Weight": "186.25",
+        "Purity": "97%",
+        "Availability": "In Stock"
+    },
+    {
+        "Product ID": "VQ-KSM-011",
+        "Product Name": "5-Bromo-2,4-dichloropyrimidine",
+        "CAS Number": "36082-50-5",
+        "Molecular Formula": "C4HBrCl2N2",
+        "Molecular Weight": "227.87",
+        "Purity": "98%",
+        "Availability": "In Stock"
+    },
+    {
+        "Product ID": "VQ-KSM-012",
+        "Product Name": "5-Bromo-2,4-dimethoxy pyrimidine",
+        "CAS Number": "56686-16-9",
+        "Molecular Formula": "C6H7BrN2O2",
+        "Molecular Weight": "219.04",
+        "Purity": "97%",
+        "Availability": "In Stock"
+    },
+    {
+        "Product ID": "VQ-INT-001",
+        "Product Name": "2-Chloro-5-nitrobenzoic acid",
+        "CAS Number": "2516-96-3",
+        "Molecular Formula": "C7H4ClNO4",
+        "Molecular Weight": "201.56",
+        "Purity": "98%",
+        "Availability": "In Stock"
+    },
+    {
+        "Product ID": "VQ-INT-002",
+        "Product Name": "3-hydroxy-4-nitrobenzoic acid",
+        "CAS Number": "619-14-7",
+        "Molecular Formula": "C7H5NO5",
+        "Molecular Weight": "183.12",
+        "Purity": "97%",
+        "Availability": "In Stock"
+    },
+    {
+        "Product ID": "VQ-INT-003",
+        "Product Name": "3-hydroxy-4-amino benzoic acid",
+        "CAS Number": "2374-03-0",
+        "Molecular Formula": "C7H7NO3",
+        "Molecular Weight": "153.14",
+        "Purity": "98%",
+        "Availability": "In Stock"
+    },
+    {
+        "Product ID": "VQ-INT-004",
+        "Product Name": "Vanillic acid",
+        "CAS Number": "121-34-6",
+        "Molecular Formula": "C8H8O4",
+        "Molecular Weight": "168.15",
+        "Purity": "99%",
+        "Availability": "In Stock"
+    },
+    {
+        "Product ID": "VQ-INT-005",
+        "Product Name": "5-Nitro-salicylic acid",
+        "CAS Number": "96-97-9",
+        "Molecular Formula": "C7H5NO5",
+        "Molecular Weight": "183.12",
+        "Purity": "98%",
+        "Availability": "In Stock"
+    },
+    {
+        "Product ID": "VQ-INT-006",
+        "Product Name": "1-Naphthoic acid",
+        "CAS Number": "86-55-5",
+        "Molecular Formula": "C11H8O2",
+        "Molecular Weight": "172.18",
+        "Purity": "98%",
+        "Availability": "In Stock"
+    },
+    {
+        "Product ID": "VQ-INT-007",
+        "Product Name": "2,4-dichloro-6-methylpyrimidine",
+        "CAS Number": "5424-21-5",
+        "Molecular Formula": "C5H4Cl2N2",
+        "Molecular Weight": "163.00",
+        "Purity": "97%",
+        "Availability": "In Stock"
+    },
+    {
+        "Product ID": "VQ-INT-008",
+        "Product Name": "3,6-Dichloropyridazine",
+        "CAS Number": "141-30-0",
+        "Molecular Formula": "C4H2Cl2N2",
+        "Molecular Weight": "148.98",
+        "Purity": "98%",
+        "Availability": "In Stock"
+    }
+]
