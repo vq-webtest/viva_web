@@ -286,28 +286,46 @@ function showNotification(msg, type = 'success') {
 
 // ---- Catalog Data Loading ----
 
+const embeddedCatalogData = {
+    impurities: () => (typeof window.VQ_IMPURITIES !== 'undefined' ? window.VQ_IMPURITIES : null),
+    api: () => (typeof window.VQ_API !== 'undefined' ? window.VQ_API : null),
+    intermediates: () => (typeof window.VQ_INTERMEDIATES !== 'undefined' ? window.VQ_INTERMEDIATES : null)
+};
+
+function showCatalogRows(catalogKey) {
+    const loader = document.getElementById('catalog-loader');
+    if (loader) loader.classList.add('hidden');
+    filteredRows = [...currentDataset];
+    currentPage = 1;
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlQuery = urlParams.get('q');
+    const searchInput = document.getElementById('catalog-search-input');
+    if (urlQuery && searchInput) {
+        searchInput.value = urlQuery;
+        filterAndDisplay(urlQuery, catalogKey);
+    } else {
+        renderPage(catalogKey);
+    }
+}
+
 async function initializeCatalogSearch(catalogKey) {
     const config = catalogConfig[catalogKey];
     if (!config) return;
     const loader = document.getElementById('catalog-loader');
     try {
         if (loader) loader.classList.remove('hidden');
+        const embedded = embeddedCatalogData[catalogKey] ? embeddedCatalogData[catalogKey]() : null;
+        if (embedded && embedded.length) {
+            currentDataset = embedded;
+            console.log(`Loaded ${currentDataset.length} rows for ${config.title} (embedded)`);
+            showCatalogRows(catalogKey);
+            return;
+        }
         const response = await fetch(`assets/data/${config.file}`);
         if (!response.ok) throw new Error('Failed to load catalog data');
         currentDataset = await response.json();
         console.log(`Loaded ${currentDataset.length} rows for ${config.title}`);
-        if (loader) loader.classList.add('hidden');
-        filteredRows = [...currentDataset];
-        currentPage = 1;
-        const urlParams = new URLSearchParams(window.location.search);
-        const urlQuery = urlParams.get('q');
-        const searchInput = document.getElementById('catalog-search-input');
-        if (urlQuery && searchInput) {
-            searchInput.value = urlQuery;
-            filterAndDisplay(urlQuery, catalogKey);
-        } else {
-            renderPage(catalogKey);
-        }
+        showCatalogRows(catalogKey);
     } catch (err) {
         console.error("Error loading catalog: ", err);
         if (loader) {
@@ -329,6 +347,9 @@ function filterAndDisplay(query, catalogKey) {
         filteredRows = currentDataset.filter(row => {
             return (
                 (row["Product Name"] && row["Product Name"].toLowerCase().includes(q)) ||
+                (row["Chemical Name"] && row["Chemical Name"].toLowerCase().includes(q)) ||
+                (row["Synonym"] && row["Synonym"].toLowerCase().includes(q)) ||
+                (row["API Family"] && row["API Family"].toLowerCase().includes(q)) ||
                 (row["CAS Number"] && row["CAS Number"].toLowerCase().includes(q)) ||
                 (row["Molecular Formula"] && row["Molecular Formula"].toLowerCase().includes(q)) ||
                 (row["Product ID"] && row["Product ID"].toLowerCase().includes(q))
@@ -435,15 +456,29 @@ function displayRows(rows, catalogKey) {
         const purity = row["Purity"] || row["Purity Standard"] || "USP/In-House";
         const formula = row["Molecular Formula"] || "N/A";
         const weight = row["Molecular Weight"] || "N/A";
-        const centerCols = `
+        const apiFamily = row["API Family"] || "";
+        const chemName = row["Chemical Name"] || "";
+        let centerCols = "";
+        let nameCell = `<td class="px-6 py-4 text-sm font-bold text-primary">${prodName}</td>`;
+        if (catalogKey === 'intermediates' && apiFamily) {
+            centerCols = `
+            <td class="px-6 py-4 text-xs font-semibold text-slate-700">${apiFamily}</td>
+            <td class="px-6 py-4 text-xs text-slate-500 font-label-data">${formula}</td>
+        `;
+        } else {
+            if (chemName && chemName !== "N/A") {
+                nameCell = `<td class="px-6 py-4 text-sm font-bold text-primary">${prodName}<span class="block text-[11px] font-normal text-slate-500 mt-1 leading-snug">${chemName.length > 120 ? chemName.substring(0, 120) + '…' : chemName}</span></td>`;
+            }
+            centerCols = `
             <td class="px-6 py-4 text-xs font-semibold text-slate-700 font-label-data">${formula}</td>
             <td class="px-6 py-4 text-xs text-slate-500 font-label-data">${weight}</td>
         `;
+        }
         const safeName = prodName.replace(/'/g, "\\'");
         html += `
             <tr class="hover:bg-[#F0FDFA] border-b border-outline-variant/60 transition duration-150">
                 <td class="px-6 py-4 text-xs font-semibold text-primary font-label-data">${prodId}</td>
-                <td class="px-6 py-4 text-sm font-bold text-primary">${prodName}</td>
+                ${nameCell}
                 <td class="px-6 py-4 text-xs font-semibold font-label-data text-secondary select-all">${casNo}</td>
                 ${centerCols}
                 <td class="px-6 py-4 text-xs text-center">
