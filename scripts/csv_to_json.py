@@ -120,8 +120,25 @@ def canonical_header(name):
 
 
 def output_name(csv_name):
+    """Map a CSV file name to the JSON file the website expects.
+
+    Exact known names win; otherwise infer from keywords so a non-technical
+    user can drop in a loosely named file (e.g. "Impurities list.csv").
+    """
     base = os.path.splitext(os.path.basename(csv_name))[0]
-    return OUTPUT_NAMES.get(base.lower(), base.lower() + ".json")
+    key = re.sub(r"\s+", " ", base).strip().lower()
+
+    if key in OUTPUT_NAMES:
+        return OUTPUT_NAMES[key]
+
+    if "impurit" in key:
+        return "impurities.json"
+    if "intermed" in key or "ksm" in key:
+        return "intermediates.json"
+    if re.search(r"\bapis?\b", key):
+        return "api.json"
+
+    return key + ".json"
 
 
 def parse_csv(csv_path):
