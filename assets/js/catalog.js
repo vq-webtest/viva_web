@@ -319,7 +319,38 @@ Object.keys(FIELD_ALIASES).forEach(canonical => {
 });
 
 function normalizeHeaderKey(key) {
-    return String(key).replace(/\s+/g, ' ').trim().toLowerCase();
+    return String(key)
+        .replace(/\u00a0/g, ' ')
+        .replace(/[^0-9a-zA-Z/ ]+/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim()
+        .toLowerCase();
+}
+
+// Maps any reasonable column heading to the site's canonical field name.
+// This is the single place to teach the site a new column wording - no build
+// script change needed. Keep in sync with scripts/csv_to_json.py (which no
+// longer maps columns; this function is the source of truth).
+function canonicalField(key) {
+    const k = normalizeHeaderKey(key);
+    if (!k) return '';
+    if (fieldLookup[k]) return fieldLookup[k];
+    if (/\bcas\b/.test(k)) return 'CAS Number';
+    if (k.includes('synonym')) return 'Synonym';
+    if (k.includes('chemical name') || k.includes('iupac')) return 'Chemical Name';
+    if (k.includes('formula')) return 'Molecular Formula';
+    if (k.includes('weight') || k.includes('mass') || /\bmw\b/.test(k)) return 'Molecular Weight';
+    if (k.includes('purity')) return 'Purity';
+    if (['availab', 'delivery', 'lead time', 'stock', 'status'].some(w => k.includes(w))) return 'Availability';
+    if (k.includes('packaging size') || k.includes('pack size')) return 'Packaging Size';
+    if (k.includes('packaging type')) return 'Packaging Type';
+    if (k.includes('grade')) return 'Grade';
+    if (/\bform\b/.test(k)) return 'Form';
+    if (k.includes('api') && ['usage', 'family', 'application', 'use'].some(w => k.includes(w))) return 'API Family';
+    if (k.includes('moq') || k.includes('minimum order')) return 'MOQ';
+    if (k.includes('usage') || k.includes('application')) return 'Usage';
+    if (k.includes('product') || k.includes('compound') || k.includes('name')) return 'Product Name';
+    return '';
 }
 
 function normalizeCatalogRows(rows, catalogKey) {
@@ -327,7 +358,7 @@ function normalizeCatalogRows(rows, catalogKey) {
     return rows.map((raw, idx) => {
         const row = {};
         Object.keys(raw).forEach(key => {
-            const canonical = fieldLookup[normalizeHeaderKey(key)];
+            const canonical = canonicalField(key);
             if (canonical && (row[canonical] === undefined || row[canonical] === '')) {
                 row[canonical] = raw[key];
             }
