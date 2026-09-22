@@ -292,6 +292,65 @@ const embeddedCatalogData = {
     intermediates: () => (typeof window.VQ_INTERMEDIATES !== 'undefined' ? window.VQ_INTERMEDIATES : null)
 };
 
+const CATALOG_ID_PREFIX = { impurities: 'VQ-IMP', api: 'VQ-API', intermediates: 'VQ-INT' };
+
+const FIELD_ALIASES = {
+    'Product ID': ['product id', 'productid', 'product code', 'code', 'id'],
+    'Product Name': ['product name', 'common name', 'compound name', 'name'],
+    'Chemical Name': ['chemical name', 'iupac name'],
+    'Synonym': ['synonym', 'synonyms'],
+    'CAS Number': ['cas number', 'cas no', 'cas'],
+    'Molecular Formula': ['molecular formula', 'chemical formula', 'formula'],
+    'Molecular Weight': ['molecular weight', 'mol weight', 'molecular mass', 'mw'],
+    'Purity': ['purity', 'purity standard'],
+    'Availability': ['availability', 'delivery time', 'lead time', 'stock status', 'stock'],
+    'API Family': ['api family', 'family'],
+    'Packaging Size': ['packaging size', 'package size'],
+    'Grade': ['grade', 'grade standard'],
+    'Form': ['form'],
+    'Packaging Type': ['packaging type'],
+    'Usage': ['usage/ application', 'usage', 'application'],
+    'MOQ': ['minimum order quantity', 'moq']
+};
+
+const fieldLookup = {};
+Object.keys(FIELD_ALIASES).forEach(canonical => {
+    FIELD_ALIASES[canonical].forEach(alias => { fieldLookup[alias] = canonical; });
+});
+
+function normalizeHeaderKey(key) {
+    return String(key).replace(/\s+/g, ' ').trim().toLowerCase();
+}
+
+function normalizeCatalogRows(rows, catalogKey) {
+    const prefix = CATALOG_ID_PREFIX[catalogKey] || 'VQ';
+    return rows.map((raw, idx) => {
+        const row = {};
+        Object.keys(raw).forEach(key => {
+            const canonical = fieldLookup[normalizeHeaderKey(key)];
+            if (canonical && (row[canonical] === undefined || row[canonical] === '')) {
+                row[canonical] = raw[key];
+            }
+        });
+        if (!row['Product ID']) {
+            row['Product ID'] = `${prefix}-${String(idx + 1).padStart(3, '0')}`;
+        }
+        if (row['Molecular Weight'] !== undefined && row['Molecular Weight'] !== null) {
+            row['Molecular Weight'] = String(row['Molecular Weight']);
+        }
+        return row;
+    });
+}
+
+function showCatalogError(loader) {
+    if (!loader) return;
+    loader.innerHTML = `
+        <span class="material-symbols-outlined text-4xl text-red-500 mb-2">error</span>
+        <p class="text-sm font-semibold text-primary">Failed to load chemical database</p>
+        <p class="text-xs text-slate-500 mt-1">Please try refreshing the page or contact support.</p>
+    `;
+}
+
 function showCatalogRows(catalogKey) {
     const loader = document.getElementById('catalog-loader');
     if (loader) loader.classList.add('hidden');
@@ -314,27 +373,30 @@ async function initializeCatalogSearch(catalogKey) {
     const loader = document.getElementById('catalog-loader');
     try {
         if (loader) loader.classList.remove('hidden');
+        const response = await fetch(`assets/data/${config.file}?v=${Date.now()}`, { cache: 'no-store' });
+        if (!response.ok) throw new Error('Failed to load catalog data');
+        const rawRows = await response.json();
+        if (!Array.isArray(rawRows) || rawRows.length === 0) {
+            throw new Error('Catalog data is empty or invalid');
+        }
+        const normalized = normalizeCatalogRows(rawRows, catalogKey);
+        if (!normalized.some(row => row['Product Name'])) {
+            throw new Error('Catalog data failed validation');
+        }
+        currentDataset = normalized;
+        console.log(`Loaded ${currentDataset.length} rows for ${config.title} (JSON)`);
+        showCatalogRows(catalogKey);
+    } catch (err) {
+        console.warn('JSON catalog fetch failed, trying embedded fallback:', err);
         const embedded = embeddedCatalogData[catalogKey] ? embeddedCatalogData[catalogKey]() : null;
         if (embedded && embedded.length) {
-            currentDataset = embedded;
-            console.log(`Loaded ${currentDataset.length} rows for ${config.title} (embedded)`);
+            currentDataset = normalizeCatalogRows(embedded, catalogKey);
+            console.log(`Loaded ${currentDataset.length} rows for ${config.title} (embedded fallback)`);
             showCatalogRows(catalogKey);
             return;
         }
-        const response = await fetch(`assets/data/${config.file}`);
-        if (!response.ok) throw new Error('Failed to load catalog data');
-        currentDataset = await response.json();
-        console.log(`Loaded ${currentDataset.length} rows for ${config.title}`);
-        showCatalogRows(catalogKey);
-    } catch (err) {
         console.error("Error loading catalog: ", err);
-        if (loader) {
-            loader.innerHTML = `
-                <span class="material-symbols-outlined text-4xl text-red-500 mb-2">error</span>
-                <p class="text-sm font-semibold text-primary">Failed to load chemical database</p>
-                <p class="text-xs text-slate-500 mt-1">Please try refreshing the page or contact support.</p>
-            `;
-        }
+        showCatalogError(loader);
     }
 }
 
@@ -485,8 +547,8 @@ function displayRows(rows, catalogKey) {
                     <span class="bg-slate-100 text-slate-700 font-bold px-2 py-0.5 rounded text-[10px] uppercase font-label-data">${purity}</span>
                 </td>
                 <td class="px-6 py-4 text-xs text-center">
-                    <span class="inline-flex items-center gap-1 font-bold ${availability.includes('Stock') ? 'text-green-600' : 'text-orange-500'}">
-                        <span class="h-1.5 w-1.5 rounded-full ${availability.includes('Stock') ? 'bg-green-600' : 'bg-orange-500'}"></span>
+                    <span class="inline-flex items-center gap-1 font-bold ${String(availability).toLowerCase().includes('stock') ? 'text-green-600' : 'text-orange-500'}">
+                        <span class="h-1.5 w-1.5 rounded-full ${String(availability).toLowerCase().includes('stock') ? 'bg-green-600' : 'bg-orange-500'}"></span>
                         ${availability}
                     </span>
                 </td>
