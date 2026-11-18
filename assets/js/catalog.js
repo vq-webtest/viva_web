@@ -1,9 +1,9 @@
 let rfqCart = JSON.parse(localStorage.getItem('vivaquest_rfq_cart')) || [];
 
 const catalogConfig = {
-    impurities: { file: 'impurities.json', title: 'Impurities' },
-    api: { file: 'api.json', title: 'APIs' },
-    intermediates: { file: 'intermediates.json', title: 'KSMs & Intermediates' }
+    impurities: { file: 'impurities.json', title: 'Impurities', showPurity: true },
+    api: { file: 'api.json', title: 'APIs', showPurity: false },
+    intermediates: { file: 'intermediates.json', title: 'KSMs & Intermediates', showPurity: true }
 };
 
 const ITEMS_PER_PAGE = 10;
@@ -527,10 +527,13 @@ function displayRows(rows, catalogKey) {
         recordsCount.innerText = `${rows.length} product${rows.length === 1 ? '' : 's'} found`;
     }
 
+    const config = catalogConfig[catalogKey] || {};
+    const showPurity = config.showPurity !== false;
+
     if (rows.length === 0) {
         tableBody.innerHTML = `
             <tr>
-                <td colspan="8" class="text-center py-12 text-slate-400">
+                <td colspan="${showPurity ? 8 : 7}" class="text-center py-12 text-slate-400">
                     <span class="material-symbols-outlined text-4xl mb-2">sentiment_dissatisfied</span>
                     <p class="text-sm font-semibold">No chemical compounds matched your criteria.</p>
                     <p class="text-xs mt-1">Try searching by CAS Number, molecular formula, or product name.</p>
@@ -567,16 +570,17 @@ function displayRows(rows, catalogKey) {
             <td class="px-6 py-4 text-xs text-slate-500 font-label-data">${weight}</td>
         `;
         }
+        const purityCol = showPurity ? `
+                <td class="px-6 py-4 text-xs text-center">
+                    <span class="bg-slate-100 text-slate-700 font-bold px-2 py-0.5 rounded text-[10px] uppercase font-label-data">${purity}</span>
+                </td>` : '';
         const safeName = prodName.replace(/'/g, "\\'");
         html += `
             <tr class="hover:bg-[#F0FDFA] border-b border-outline-variant/60 transition duration-150">
                 <td class="px-6 py-4 text-xs font-semibold text-primary font-label-data">${prodId}</td>
                 ${nameCell}
                 <td class="px-6 py-4 text-xs font-semibold font-label-data text-secondary select-all">${casNo}</td>
-                ${centerCols}
-                <td class="px-6 py-4 text-xs text-center">
-                    <span class="bg-slate-100 text-slate-700 font-bold px-2 py-0.5 rounded text-[10px] uppercase font-label-data">${purity}</span>
-                </td>
+                ${centerCols}${purityCol}
                 <td class="px-6 py-4 text-xs text-center">
                     <span class="inline-flex items-center gap-1 font-bold ${String(availability).toLowerCase().includes('stock') ? 'text-green-600' : 'text-orange-500'}">
                         <span class="h-1.5 w-1.5 rounded-full ${String(availability).toLowerCase().includes('stock') ? 'bg-green-600' : 'bg-orange-500'}"></span>

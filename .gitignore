@@ -1,0 +1,42 @@
+# ---- Local agent / editor instructions ----
+AGENTS.md
+
+# ---- OS metadata ----
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- Editors / IDEs ----
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.sublime-workspace
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# ---- Local environment / secrets ----
+.env
+.env.*
+
+# ---- Generated catalog output ----
+# scripts/csv_to_json.py generates these; CI regenerates them at deploy time.
+# The committed fallbacks (*-data.js) and source CSVs are NOT ignored.
+assets/data/*.json
+assets/data/*.tmp
+
+# ---- Local server / logs ----
+*.log
